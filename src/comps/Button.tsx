@@ -1,3 +1,3 @@
-export default function Button(props: { value: string }) {
-  return <button>{props.value}</button>;
+export default function Button(props: { value: string; onClick?: () => void }) {
+  return <button onClick={props.onClick}>{props.value}</button>;
 }
