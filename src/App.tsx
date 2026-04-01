@@ -48,28 +48,8 @@ export default function App() {
   }
   return (
     <>
-      <Display value={num} />
-      <ButtonGrid
-        onButtonClick={(label) => {
-          switch (label) {
-            case "AC":
-              handleAc();
-              break;
-            case "+":
-            case "-":
-            case "*":
-            case "/":
-            case "%":
-              handleOpe(label as Ope);
-              break;
-            case "=":
-              handleEqual();
-              break;
-            default:
-              handleDig(label);
-          }
-        }}
-      />
+      <Display num={num} />
+      <ButtonGrid />
     </>
   );
 }
