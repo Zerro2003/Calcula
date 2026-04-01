@@ -1,3 +1,3 @@
-export default function Display() {
-  return <div className="display">0</div>;
+export default function Display(prop: { num: string }) {
+  return <div className="display; bg-amber-600">{prop.num}</div>;
 }
