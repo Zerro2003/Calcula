@@ -1,11 +1,3 @@
-import React from "react";
-
-type DisplayProps = {
-  value: string;
-};
-
-const Display: React.FC<DisplayProps> = ({ value }) => {
-  return <div className="display">{value}</div>;
-};
-
-export default Display;
+export default function Display() {
+  return <div className="display">0</div>;
+}
