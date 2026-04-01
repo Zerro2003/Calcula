@@ -1,39 +1,34 @@
 import React from "react";
 import Button from "./Button";
 
-type ButtonGridProps = {
-  onButtonClick: (label: string) => void;
-};
-
-const ButtonGrid: React.FC<ButtonGridProps> = ({ onButtonClick }) => {
+export default function ButtonGrid() {
   const buttons = [
-    ["AC", "+/-", "%", "÷"],
-    ["7", "8", "9", "x"],
-    ["4", "5", "6", "-"],
-    ["1", "2", "3", "+"],
-    ["0", ".", "="],
+    "AC",
+    "+/-",
+    "+",
+    "-",
+    "*",
+    "/",
+    "%",
+    "7",
+    "8",
+    "9",
+    "4",
+    "5",
+    "6",
+    "1",
+    "2",
+    "3",
+    "0",
+    ".",
+    "=",
   ];
 
   return (
-    <div className="button-grid">
-      {buttons.map((row, rowIndex) => (
-        <div key={rowIndex} className="button-row">
-          {row.map((label) => (
-            <Button
-              key={label}
-              label={label}
-              onClick={onButtonClick}
-              variant={
-                ["÷", "x", "-", "+", "="].includes(label)
-                  ? "operator"
-                  : "default"
-              }
-            />
-          ))}
-        </div>
+    <>
+      {buttons.map((button) => (
+        <Button key={button} value={button} />
       ))}
-    </div>
+    </>
   );
-};
-
-export default ButtonGrid;
+}
