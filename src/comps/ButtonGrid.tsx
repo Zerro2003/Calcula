@@ -26,9 +26,28 @@ export default function ButtonGrid() {
 
   return (
     <>
-      {buttons.map((button) => (
-        <Button key={button} value={button} />
-      ))}
+      <div className="bg-amber-400 h-full mx-7">
+        {buttons.map((button) => {
+          if ("0123456789".includes(button)) {
+            return (
+              <Button
+                key={button}
+                value={button}
+                onClick={() => handleDig(button)}
+              />
+            );
+          } else if ("+-*/%".includes(button)) {
+            return (
+              <Button
+                key={button}
+                value={button}
+                onClick={() => handleOpe(button as Ope)}
+              />
+            );
+          }
+          return null;
+        })}
+      </div>
     </>
   );
 }
