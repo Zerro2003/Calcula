@@ -3,7 +3,7 @@ import ButtonGrid from "./comps/ButtonGrid";
 import Display from "./comps/Display";
 type Ope = "+" | "-" | "*" | "/" | "%";
 export default function App() {
-  const [num, setNumber] = useState<string>("");
+  const [num, setNumber] = useState<string>("0");
   const [prevNumber, setPrev] = useState<string>("");
   const [operator, setOpe] = useState<Ope | null>(null);
 
