@@ -1,7 +1,16 @@
-import React from "react";
 import Button from "./Button";
-
-export default function ButtonGrid() {
+type Ope = "+" | "-" | "*" | "/" | "%";
+export default function ButtonGrid({
+  handleDig,
+  handleOpe,
+  handleAc,
+  handleEqual,
+}: {
+  handleDig: (digit: string) => void;
+  handleOpe: (oper: string) => void;
+  handleAc: () => void;
+  handleEqual: () => void;
+}) {
   const buttons = [
     "AC",
     "+/-",
@@ -44,6 +53,10 @@ export default function ButtonGrid() {
                 onClick={() => handleOpe(button as Ope)}
               />
             );
+          } else if (button === "AC") {
+            return <Button key={button} value={button} onClick={handleAc} />;
+          } else if (button === "=") {
+            return <Button key={button} value={button} onClick={handleEqual} />;
           }
           return null;
         })}
