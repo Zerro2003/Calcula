@@ -5,29 +5,31 @@ export default function ButtonGrid({
   handleOpe,
   handleAc,
   handleEqual,
+  handleSign,
 }: {
   handleDig: (digit: string) => void;
   handleOpe: (oper: string) => void;
   handleAc: () => void;
   handleEqual: () => void;
+  handleSign: () => void;
 }) {
   const buttons = [
     "AC",
     "+/-",
-    "+",
-    "-",
-    "*",
-    "/",
     "%",
+    "/",
     "7",
     "8",
     "9",
+    "+",
     "4",
     "5",
     "6",
+    "-",
     "1",
     "2",
     "3",
+    "*",
     "0",
     ".",
     "=",
@@ -35,11 +37,16 @@ export default function ButtonGrid({
 
   return (
     <>
-      <div className="bg-amber-400 h-full mx-7">
+      <div className="grid grid-cols-4 bg-gray-400 h-full mx-[31.5rem]">
         {buttons.map((button) => {
-          if ("0123456789".includes(button)) {
+          if ("0123456789.".includes(button)) {
             return (
               <Button
+                className={
+                  button === "0"
+                    ? "col-span-2 bg-gray-200 h-26 w-52  border-2 text-2xl"
+                    : "bg-gray-200 h-26 w-26  border-2 text-2xl"
+                }
                 key={button}
                 value={button}
                 onClick={() => handleDig(button)}
@@ -48,15 +55,51 @@ export default function ButtonGrid({
           } else if ("+-*/%".includes(button)) {
             return (
               <Button
+                className={
+                  button === "%"
+                    ? "bg-gray-200 h-26 w-26  border-2 text-2xl"
+                    : "bg-orange-400 h-26 w-26  border-2 text-2xl"
+                }
                 key={button}
                 value={button}
                 onClick={() => handleOpe(button as Ope)}
               />
             );
           } else if (button === "AC") {
-            return <Button key={button} value={button} onClick={handleAc} />;
+            return (
+              <Button
+                className="bg-gray-200 h-26 w-26  border-2 text-2xl"
+                key={button}
+                value={button}
+                onClick={handleAc}
+              />
+            );
           } else if (button === "=") {
-            return <Button key={button} value={button} onClick={handleEqual} />;
+            return (
+              <Button
+                className="bg-orange-400 h-26 w-26  border-2 text-2xl"
+                key={button}
+                value={button}
+                onClick={handleEqual}
+              />
+            );
+          } else if (button === ".") {
+            return (
+              <Button
+                key={button}
+                value={button}
+                onClick={() => handleDig(button)}
+              />
+            );
+          } else if (button === "+/-") {
+            return (
+              <Button
+                className="bg-gray-200 h-26 w-26  border-2 text-2xl"
+                key={button}
+                value={button}
+                onClick={() => handleSign()}
+              />
+            );
           }
           return null;
         })}
