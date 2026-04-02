@@ -49,7 +49,13 @@ export default function App() {
   return (
     <>
       <Display num={num} />
-      <ButtonGrid />
+
+      <ButtonGrid
+        handleDig={handleDig}
+        handleOpe={handleOpe}
+        handleAc={handleAc}
+        handleEqual={handleEqual}
+      />
     </>
   );
 }
