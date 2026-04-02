@@ -10,6 +10,9 @@ export default function App() {
   function handleDig(digit: string) {
     setNumber(num + digit);
   }
+  function handleSign() {
+    setNumber((Number(num) * -1).toString());
+  }
   function handleOpe(oper: Ope) {
     if (prevNumber !== "" && operator !== null) {
       handleEqual();
@@ -55,6 +58,7 @@ export default function App() {
         handleOpe={handleOpe}
         handleAc={handleAc}
         handleEqual={handleEqual}
+        handleSign={handleSign}
       />
     </>
   );
