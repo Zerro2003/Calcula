@@ -43,7 +43,7 @@ export default function ButtonGrid({
         if ("0123456789.".includes(button)) {
           className += "bg-gray-200 ";
           if (button === "0") className = "col-span-2 bg-gray-200 h-26 w-52 border-1 text-2xl ";
-        } else if ("+-*/".includes(button)) {
+        } else if ("+-*/=".includes(button)) {
           className += "bg-orange-400 ";
         } else {
           className += "bg-gray-200 ";
