@@ -7,42 +7,48 @@ export default function App() {
   const [prevNumber, setPrev] = useState<string>("");
   const [operator, setOpe] = useState<Ope | null>(null);
 
+  function performCalculation(a: string, b: string, op: Ope): string {
+    const n1 = Number(a);
+    const n2 = Number(b);
+    let res = 0;
+    switch (op) {
+      case "+": res = n1 + n2; break;
+      case "-": res = n1 - n2; break;
+      case "*": res = n1 * n2; break;
+      case "/": res = n1 / n2; break;
+      case "%": res = n1 % n2; break;
+    }
+    return res.toString();
+  }
+
   function handleDig(digit: string) {
-    setNumber(num + digit);
+    if (num === "0" && digit !== ".") {
+      setNumber(digit);
+    } else {
+      setNumber(num + digit);
+    }
   }
   function handleSign() {
     setNumber((Number(num) * -1).toString());
   }
   function handleOpe(oper: Ope) {
-    if (prevNumber !== "" && operator !== null) {
-      handleEqual();
+    if (prevNumber !== "" && operator !== null && num !== "") {
+      const result = performCalculation(prevNumber, num, operator);
+      setPrev(result);
+      setNumber("");
+    } else if (num !== "") {
+      setPrev(num);
+      setNumber("");
     }
-    setPrev(num);
     setOpe(oper);
-    setNumber("");
   }
   function handleEqual() {
-    let result = 0;
-    switch (operator) {
-      case "+":
-        result = Number(num) + Number(prevNumber);
-        break;
-      case "-":
-        result = Number(num) - Number(prevNumber);
-        break;
-      case "*":
-        result = Number(num) * Number(prevNumber);
-        break;
-      case "/":
-        result = Number(num) / Number(prevNumber);
-        break;
-      case "%":
-        result = Number(num) % Number(prevNumber);
-        break;
+    if (prevNumber !== "" && operator !== null && num !== "") {
+      const result = performCalculation(prevNumber, num, operator);
+      setNumber(result);
+      setPrev("");
+      setOpe(null);
     }
-    setNumber(result.toString());
-    setPrev("");
-    setOpe(null);
   }
   function handleAc() {
     setNumber("0");
@@ -50,16 +56,18 @@ export default function App() {
     setOpe(null);
   }
   return (
-    <>
-      <Display num={num} />
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="flex flex-col">
+        <Display num={num || prevNumber} />
 
-      <ButtonGrid
-        handleDig={handleDig}
-        handleOpe={handleOpe}
-        handleAc={handleAc}
-        handleEqual={handleEqual}
-        handleSign={handleSign}
-      />
-    </>
+        <ButtonGrid
+          handleDig={handleDig}
+          handleOpe={handleOpe}
+          handleAc={handleAc}
+          handleEqual={handleEqual}
+          handleSign={handleSign}
+        />
+      </div>
+    </div>
   );
 }
